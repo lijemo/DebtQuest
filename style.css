@@ -1,0 +1,237 @@
+body {
+    background-image: url("img/BG.jpg") !important;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    background-color: rgb(0, 0, 0); 
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+    color: greenyellow;
+    margin: auto;
+    display: block;
+    margin-top: -20px;
+    margin-bottom: 200px;
+}
+a.button {
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90px;
+  height: 40px;
+  border-radius: 0px;
+  font-family: 'Courier New', Courier, monospace;
+  border: 1px solid greenyellow;
+  background-color: black;
+  color: greenyellow;
+  text-align: center;
+  font-size: 14px;
+  align-content: center;
+  padding: 12px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  line-height: 60px;
+}
+
+button:hover, #doorStatic:hover, a.button:hover, #muteButton:hover, #unmuteButton:hover{
+    cursor: pointer;
+}
+
+#instructions {
+    margin: auto;
+    display: block;
+    margin-top: -20px;
+}
+#doorStatic {
+  max-width: 800px;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  display: block;
+}
+#door {
+  max-width: 800px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  display: none;
+}
+#logo {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  display: block;
+}
+#dice {
+  margin: auto;
+  display: none;
+  max-width: 200px;
+  width: 30%;
+  /* position: absolute;
+  bottom: 0;
+  right: 0; */
+}
+#secondDice {
+  margin: auto;
+  display: none;
+  max-width: 200px;
+  width: 30%;
+  /* position: absolute;
+  bottom: 0;
+  right: 0; */
+}
+#list {
+  white-space: pre-line;
+  display: none;
+  margin: auto;
+  /* width: fit-content; */
+  text-align: left;
+  margin-bottom: 20px;
+  border: 2px solid greenyellow;
+  border-style: dashed;
+  padding: 15px;
+  width: 69%;
+  max-width: 570px;
+}
+#secondList {
+  white-space: pre-line;
+  display: none;
+  margin: auto;
+  /* width: fit-content; */
+  text-align: left;
+  margin-bottom: 30px;
+  border: 2px solid greenyellow;
+  border-style: dashed;
+  padding: 15px;
+  margin-top: 30px;
+  width: 69%;
+  max-width: 570px;
+}
+#thirdList {
+  white-space: pre-line;
+  display: none;
+  margin: auto;
+  /* width: fit-content; */
+  text-align: left;
+  margin-bottom: 30px;
+  border: 2px solid greenyellow;
+  border-style: dashed;
+  padding: 15px;
+  margin-top: 30px;
+  width: 69%;
+  max-width: 570px;
+}
+#world {
+  display: none;
+  margin: auto;
+  max-width: 600px;
+  text-align: center;
+  width: 75%;
+  /* border: 2px solid greenyellow; */
+  padding: 20px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+
+}
+#promptWeapon, #promptNPC, #promptMonster {
+  display: none;
+  margin: auto;
+  max-width: 600px;
+  text-align: center;
+  width: 75%;
+  /* border: 2px solid greenyellow; */
+  padding: 10px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+
+}
+#world-button {
+  display: none;
+  margin: auto;
+  width: 90px;
+  height: 40px;
+  border-radius: 0px;
+  font-family: 'Courier New', Courier, monospace;
+  border: 1px solid greenyellow;
+  background-color: black;
+  color: greenyellow;
+}
+#secondButton {
+  display: none;
+  margin: auto;
+  width: 90px;
+  height: 40px;
+  border-radius: 0px;
+  font-family: 'Courier New', Courier, monospace;
+  border: 1px solid greenyellow;
+  background-color: black;
+  color: greenyellow;
+}
+#thirdButton {
+  display: none;
+  margin: auto;
+  width: 90px;
+  height: 40px;
+  border-radius: 0px;
+  font-family: 'Courier New', Courier, monospace;
+  border: 1px solid greenyellow;
+  background-color: black;
+  color: greenyellow;
+}
+.links-container {
+  text-align: center;
+  display: none;
+}
+#explore {
+display: none;
+margin: auto;
+width: 75%;
+border-radius: 0px;
+font-family: 'Courier New', Courier, monospace;
+/* border: 1px solid greenyellow; */
+/* background-color: black; */
+color: greenyellow;
+font-size: 15px;
+text-align: center;
+padding: 10px;
+}
+#printScreen {
+  display: none;
+  position: fixed;
+  bottom: 0px;
+  right: 70px;
+  width: auto;
+  padding: 0 16px 16px 16px;
+}
+#muteButton {
+  display: block;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  width: 50px;
+  height: 50px;
+  padding: 20px;
+}
+#unmuteButton {
+  display: none;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  width: 50px;
+  height: 50px;
+  padding: 20px;
+}
+@media print {
+* {
+-webkit-print-color-adjust: exact !important; /*Chrome, Safari */
+color-adjust: exact !important;  /*Firefox*/
+}
+}

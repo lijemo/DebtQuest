@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="icon" type="image/png" href="assets/img/favicons/favicon.ico">
+  <meta property="og:image" content="DebtQuest_Logo_Meta.png">
+  <style>
+    body {
+        background-image: url("BG.jpg") !important;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        background-color: rgb(0, 0, 0); 
+        font-size: 16px;
+        font-family: 'Courier New', Courier, monospace;
+        color: greenyellow;
+        margin: auto;
+        display: block;
+        margin-top: -20px;
+    }
+    a.button {
+      display: inline;
+      margin-left: auto;
+      margin-right: auto;
+      width: 90px;
+      height: 40px;
+      border-radius: 0px;
+      font-family: 'Courier New', Courier, monospace;
+      border: 1px solid greenyellow;
+      background-color: black;
+      color: greenyellow;
+      text-align: center;
+      font-size: 14px;
+      align-content: center;
+      padding: 12px;
+      margin-top: 25px;
+      margin-bottom: 25px;
+      line-height: 60px;
+}
+    #instructions {
+        margin: auto;
+        display: block;
+        margin-top: -20px;
+    }
+    #doorStatic {
+      max-width: 800px;
+      position: fixed;
+      z-index: 2;
+      top: 0;
+      right: 0;
+      left: 0;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      display: block;
+    }
+    #door {
+      max-width: 800px;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      display: none;
+    }
+    #logo {
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+      display: block;
+    }
+    #dice {
+      margin: auto;
+      display: none;
+      max-width: 200px;
+      width: 30%;
+      /* position: absolute;
+      bottom: 0;
+      right: 0; */
+    }
+    #secondDice {
+      margin: auto;
+      display: none;
+      max-width: 200px;
+      width: 30%;
+      /* position: absolute;
+      bottom: 0;
+      right: 0; */
+    }
+    #list {
+      white-space: pre-line;
+      display: none;
+      margin: auto;
+      /* width: fit-content; */
+      text-align: left;
+      margin-bottom: 20px;
+      border: 2px solid greenyellow;
+      border-style: dashed;
+      padding: 15px;
+      width: 69%;
+      max-width: 570px;
+    }
+    #secondList {
+      white-space: pre-line;
+      display: none;
+      margin: auto;
+      /* width: fit-content; */
+      text-align: left;
+      margin-bottom: 30px;
+      border: 2px solid greenyellow;
+      border-style: dashed;
+      padding: 15px;
+      margin-top: 30px;
+      width: 69%;
+      max-width: 570px;
+    }
+    #thirdList {
+      white-space: pre-line;
+      display: none;
+      margin: auto;
+      /* width: fit-content; */
+      text-align: left;
+      margin-bottom: 30px;
+      border: 2px solid greenyellow;
+      border-style: dashed;
+      padding: 15px;
+      margin-top: 30px;
+      width: 69%;
+      max-width: 570px;
+    }
+    #world {
+      display: none;
+      margin: auto;
+      max-width: 600px;
+      text-align: center;
+      width: 75%;
+      /* border: 2px solid greenyellow; */
+      padding: 20px;
+      margin-top: -10px;
+      margin-bottom: 20px;
+
+    }
+    #promptImage {
+      display: none;
+      margin: auto;
+      max-width: 600px;
+      text-align: center;
+      width: 75%;
+      /* border: 2px solid greenyellow; */
+      padding: 10px;
+      margin-top: -10px;
+      margin-bottom: 20px;
+
+    }
+    #weapon-button {
+      display: none;
+      margin: auto;
+      width: 90px;
+      height: 40px;
+      border-radius: 0px;
+      font-family: 'Courier New', Courier, monospace;
+      border: 1px solid greenyellow;
+      background-color: black;
+      color: greenyellow;
+    }
+    #secondButton {
+      display: none;
+      margin: auto;
+      width: 90px;
+      height: 40px;
+      border-radius: 0px;
+      font-family: 'Courier New', Courier, monospace;
+      border: 1px solid greenyellow;
+      background-color: black;
+      color: greenyellow;
+    }
+    #thirdButton {
+      display: none;
+      margin: auto;
+      width: 90px;
+      height: 40px;
+      border-radius: 0px;
+      font-family: 'Courier New', Courier, monospace;
+      border: 1px solid greenyellow;
+      background-color: black;
+      color: greenyellow;
+    }
+    .links-container {
+      text-align: center;
+      display: none;
+    }
+    #explore {
+    display: none;
+    margin: auto;
+    width: 75%;
+    border-radius: 0px;
+    font-family: 'Courier New', Courier, monospace;
+    /* border: 1px solid greenyellow; */
+    /* background-color: black; */
+    color: greenyellow;
+    font-size: 15px;
+    text-align: center;
+    padding: 10px;
+    }
+    #muteButton {
+      display: block;
+      position: fixed;
+      bottom: 0px;
+      right: 0px;
+      width: 50px;
+      height: 50px;
+      padding: 20px;
+    }
+    #unmuteButton {
+      display: none;
+      position: fixed;
+      bottom: 0px;
+      right: 0px;
+      width: 50px;
+      height: 50px;
+      padding: 20px;
+    }
+    @media print {
+* {
+    -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
+    color-adjust: exact !important;  /*Firefox*/
+  }
+}
+</style>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<script>
+        const bgMusicElement = document.getElementById("music");
+        
+        document.addEventListener("visibilitychange", function() {
+        if (document["hidden"]) {
+          music.pause();
+          } else {
+            music.play();}
+        });
+
+    // var BUTTON_PRESSED = false;
+    function selectWeapon() {
+        // if (BUTTON_PRESSED === true) {
+        //   return;
+        // }
+
+        // BUTTON_PRESSED = true;
+        // Define our list of tokens
+        const WEAPONS = ["MURDER FOREST", "EERIE ISLES", "THE TOWER OF PAIN"];
+        const WORLD_IMAGES = ["MurderForest.png", "EerieIsles.png", "TowerOfPain.png"];
+        const WORLD_LINKS = ["https://drive.google.com/file/d/1seU59c4LVE63QGjPXucQVXKxokoLDYav/view?usp=sharing", "https://drive.google.com/file/d/17izmRIJGWu8An4a_yQUWr6T-mSH8JhQV/view?usp=sharing", "https://drive.google.com/file/d/1oZhv5TTusRlC8-nVsExn_x0yFRf36RHZ/view?usp=sharing"];
+        // Select a token at random
+        const index = Math.floor(Math.random() * WEAPONS.length);
+        const randomWep = WEAPONS[index];
+        const randomWorld = WORLD_IMAGES[index];
+        const randomWorldPic = WORLD_LINKS[index];
+
+        const diceElement = document.getElementById("dice");
+        dice.style.display = "block";
+
+        const buttonElement = document.getElementById("weapon-button");
+        buttonElement.style.display = "none";
+
+        // Play dice audio
+        var DICE_ROLL = new Audio();
+        DICE_ROLL.src = "DiceRoll.mp3";
+        setTimeout(() => {
+          DICE_ROLL.play();
+        }, 100);
+
+        // Grab a reference to the list element
+        const weaponElement = document.getElementById("list");
+
+        // Grab a reference to the world element
+        const worldElement = document.getElementById("world");
+
+        // Grab a reference to the world image element
+        const worldImageElement = document.getElementById("worldLink");
+
+        // Grab a reference to the second list element
+        const secondListElement = document.getElementById("secondList");
+
+        // Grab a reference to the second button element
+        const secondButtonElement = document.getElementById("secondButton");
+
+        //Wait 2 seconds before updating list and display loading text
+        weaponElement.innerHTML = "•  •  •";
+        setTimeout(() => {
+
+          // Set its text to be the random value we selected
+          // weaponElement.innerHTML = `location: ${randomWep}\nweapon: ${randomWep}\n`;
+          // weaponElement.innerHTML = `location: ${randomWep}`;
+          weaponElement.innerHTML = `${randomWep}`;
+          worldElement.src = randomWorld;
+          worldElement.style.display = "block";
+          worldImageElement.href = randomWorldPic;
+          diceElement.style.display = "none";
+        }, 1500);
+
+        setTimeout(() => {
+          secondListElement.style.display = "block";
+          secondButtonElement.style.display = "block";
+          // linksContainerElement.style.display = "none";
+        }, 2000);
+
+    }
+
+    function enterSite() {
+
+        const doorStaticElement = document.getElementById("doorStatic");
+        doorStaticElement.remove();
+
+        const doorElement = document.getElementById("door");
+        door.style.display = "block";
+
+        const listElement = document.getElementById("list");
+        list.style.display = "block";
+
+        const weaponButtonElement = document.getElementById("weapon-button");
+        weaponButtonElement.style.display = "block";
+        
+        setTimeout(() => {
+          doorElement.remove();
+          list.style.display = "block";
+        }, 5200);
+
+        const bgMusicElement = document.getElementById("music");
+        bgMusicElement.play();
+}
+
+    function mute() {
+      const bgMusicElement = document.getElementById("music");
+      bgMusicElement.muted = true;
+
+      const muteButtonElement = document.getElementById("muteButton");
+      muteButtonElement.style.display = "none";
+
+      const unmuteButtonElement = document.getElementById("unmuteButton");
+      unmuteButtonElement.style.display = "block";
+    }
+
+    function unmute() {
+      const bgMusicElement = document.getElementById("music");
+      bgMusicElement.muted = false;
+
+      const muteButtonElement = document.getElementById("muteButton");
+      muteButtonElement.style.display = "block";
+
+      const unmuteButtonElement = document.getElementById("unmuteButton");
+      unmuteButtonElement.style.display = "none";
+    }
+
+
+    function selectPrompt() {
+
+        // Define our list of tokens
+        const PROMPTS = ["DQ_Monster_AdSpace.png", "DQ_Monster_Art.png", "DQ_Monster_BadDogOwner.png", "DQ_Monster_Banker.png", "DQ_Monster_BEEPY.png", "DQ_Monster_BlobArmy.png", "DQ_Monster_Blurmn.png", "DQ_Monster_Bottle.png", "DQ_Monster_Bust.png", "DQ_Monster_CannibalSlime.png", "DQ_Monster_ClamTongue.png", "DQ_Monster_CrabCrab.png", "DQ_Monster_CuteSquid.png", "DQ_Monster_DarkWitch.png", "DQ_Monster_Duck.png", "DQ_Monster_Duster.png", "DQ_Monster_Eelee.png", "DQ_Monster_FunCentipede.png", "DQ_Monster_Gargoyle.png", "DQ_Monster_Glob.png", "DQ_Monster_GnomeChomsky.png", "DQ_Monster_GreenOwl.png", "DQ_Monster_HoodieWizard.png", "DQ_Monster_HorseFly.png", "DQ_Monster_InvertedSnake.png", "DQ_Monster_KillerBird.png", "DQ_Monster_KnifeFish.png", "DQ_Monster_Knight.png", "DQ_Monster_LOVEBUG.png", "DQ_Monster_MeanLeaf.png", "DQ_Monster_Mermaid.png", "DQ_Monster_MidLevel.png", "DQ_Monster_MonsterJohn.png", "DQ_Monster_MOUSE.png", "DQ_Monster_MurderMouth.png", "DQ_Monster_PeeShooter.png", "DQ_Monster_PoisonWereRat.png", "DQ_Monster_PokeyBird.png", "DQ_Monster_PurpleAnt.png", "DQ_Monster_RichSpider.png", "DQ_Monster_SadCandle.png", "DQ_Monster_Scrappy.png", "DQ_Monster_SeedWizard.png", "DQ_Monster_SexyBook.png", "DQ_Monster_Shapes.png", "DQ_Monster_SkinnyJeanSteve.png", "DQ_Monster_SnapShot.png", "DQ_Monster_Spaghetti.png", "DQ_Monster_Spliffy.png", "DQ_Monster_SunAndMoon.png", "DQ_Monster_Thing.png", "DQ_Monster_TripleZombies.png", "DQ_Monster_Weirdo.png", "DQ_NPC_3Raccoons.png", "DQ_NPC_BabyOnLeash.png", "DQ_NPC_Borvis.png", "DQ_NPC_BoyOnARock.png", "DQ_NPC_CarWithEyelashes.png", "DQ_NPC_Crulmn.png", "DQ_NPC_CrustyWhiteDog.png", "DQ_NPC_DogWithAVideoCamera.png", "DQ_NPC_ElephantRider.png", "DQ_NPC_GabbaJack.png", "DQ_NPC_Goku.png", "DQ_NPC_GuidanceCounselor.png", "DQ_NPC_LAN.png", "DQ_NPC_LilDevil.png", "DQ_NPC_Long-Legged-Dog.png", "DQ_NPC_LongBubbleGuy.png", "DQ_NPC_MagicFrog.png", "DQ_NPC_Mold_Man.png", "DQ_NPC_NightKnight.png", "DQ_NPC_Pico.png", "DQ_NPC_PrincessPumpkin.png", "DQ_NPC_SirRichardson.png", "DQ_NPC_SleepyPhil.png", "DQ_NPC_TallWizard.png", "DQ_NPC_TheGuy.png", "DQ_NPC_TurnipBully.png", "DQ_NPC_Ursula.png", "DQ_Weapon_BigBirdFoot.png", "DQ_Weapon_Bonecrusher.png", "DQ_Weapon_BownArrow.png", "DQ_Weapon_BrassKnuck.png", "DQ_Weapon_CrabClawGlove.png", "DQ_Weapon_Crossbow.png", "DQ_Weapon_Deadstock.png", "DQ_Weapon_DronewithSword.png", "DQ_Weapon_FamilyVacationPortrait.png", "DQ_Weapon_GabbaJacksInflatableHammer.png", "DQ_Weapon_GreatAxe.png", "DQ_Weapon_HeftyHoe.png", "DQ_Weapon_Knife.png", "DQ_Weapon_Mace.png", "DQ_Weapon_MagicWand.png", "DQ_Weapon_MoonShoes.png", "DQ_Weapon_Nunchuku.png", "DQ_Weapon_Piggy.png", "DQ_Weapon_Poison.png", "DQ_Weapon_RizzSticks.png", "DQ_Weapon_RobbieTheRobot.png", "DQ_Weapon_Scythes.png", "DQ_Weapon_Shuriken.png", "DQ_Weapon_Spear.png", "DQ_Weapon_SunHarp.png", "DQ_Weapon_Sword.png", "DQ_Weapon_TickleMeMorningStar.png", "DQ_Weapon_WhiteMonster.png"];
+        const PROMPTNAMES = ["AD SPACE", "ART", "BAD DOG OWNER", "BANKER", "BEEPY", "BLOB ARMY", "BLURMN", "BOTTLE", "BUST", "CANNIBAL SLIME", "CLAM TONGUE", "CRAB CRAB", "CUTE SQUID", "DARK WITCH", "DUCK", "DUSTER", "EELEE", "FUN CENTIPEDE", "GARGOYLE", "GLOB", "GNOME CHOMSKY", "GREENOWL", "HOODIE WIZARD", "HORSE FLY", "INVERTED SNAKE", "KILLER BIRD", "KNIFE FISH", "KNIGHT", "LOVEBUG", "MEAN LEAF", "MERMAID", "MID-LEVEL BUREAUCRAT", "MONSTER JOHN", "MOUSE", "MURDER MOUTH", "PEE SHOOTER", "POISON WERE-RAT", "POKEY BIRD", "PURPLE ANT", "RICH SPIDER", "SAD CANDLE", "SCRAPPY", "SEED WIZARD", "SEXY BOOK", "SHAPES", "SKINNY JEAN STEVE", "SNAP SHOT", "BAD SPAGHETTI", "SPLIFFY", "SUN AND MOON", "THING", "TRIPLE ZOMBIES", "WEIRDO", "3 RACCOONS", "BABY ON LEASH", "BORVIS", "BOY ON A ROCK", "CAR WITH EYELASHES", "CRULMN", "CRUSTY WHITE DOG", "DOG WITH A VIDEO CAMERA", "ELEPHANT RIDER", "GABBA JACK", "GOKU", "GUIDANCE COUNSELOR", "LAN", "LIL DEVIL", "LONG-LEGGED DOG", "LONG BUBBLE GUY", "MAGIC FROG", "MOLD MAN", "NIGHT KNIGHT", "PICO", "PRINCESS PUMPKIN", "SIR RICHARDSON", "SLEEPY PHIL", "TALL WIZARD", "THE GUY", "TURNIP BULLY", "URSULA", "BIG BIRD FOOT", "BONECRUSHER", "BOWN ARROW", "BRASS KNUCK", "CRAB CLAW GLOVE", "CROSSBOW", "DEADSTOCK", "DRONE WITH SWORD", "FAMILY VACATION PORTRAIT", "GABBA JACK'S INFLATABLE HAMMER", "GREAT AXE", "HEFTY HOE", "KNIFE", "MACE", "MAGIC WAND", "MOON SHOES", "NUNCHUKU", "PIGGY", "POISON", "RIZZ STICKS", "ROBBIE THE ROBOT", "SCYTHES", "SHURIKEN", "SPEAR", "SUN HARP", "SWORD", "TICKLE-ME MORNING STAR", "WHITE MONSTER"];
+        const ACTIONS = ["BATTLE", "SIDE QUEST", "ACQUIRE LOOT", "DEATH"];
+        // Select a token at random
+        const index = Math.floor(Math.random() * PROMPTS.length);
+        const indexActions = Math.floor(Math.random() * ACTIONS.length);
+
+        const randomPrompt = PROMPTS[index];
+        const randomPromptName = PROMPTNAMES[index];
+        const randomAction = ACTIONS[indexActions];
+
+        const promptImageElement = document.getElementById("promptImage");
+        promptImageElement.src = randomPrompt;
+
+        // Play dice audio
+        var DICE_ROLL = new Audio();
+        DICE_ROLL.src = "DiceRoll.mp3";
+        setTimeout(() => {
+          DICE_ROLL.play();
+        }, 100);
+
+        const secondListElement = document.getElementById("secondList");
+        secondListElement.innerHTML = "•  •  •";
+
+        const secondButtonElement = document.getElementById("secondButton");
+        secondButtonElement.style.display = "none";
+
+        const secondDiceElement = document.getElementById("secondDice");
+        secondDiceElement.style.display = "block";
+
+        const thirdListElement = document.getElementById("thirdList");
+        thirdListElement.style.display = "none";
+
+        const exploreElement = document.getElementById("explore");
+
+        const thirdButtonElement = document.getElementById("thirdButton");
+        thirdButtonElement.style.display = "none";
+
+        // Grab a reference to the links container element
+        const linksContainerElement = document.getElementById("links");
+
+        setTimeout(() => {
+        secondDiceElement.style.display = "none";
+        linksContainerElement.style.display = "block";
+        promptImageElement.style.display = "block";
+        secondListElement.innerHTML = randomPromptName;
+        thirdListElement.innerHTML = `ACTION: ${randomAction}`;
+        thirdListElement.style.display = "block";
+        thirdButtonElement.style.display = "block";
+        exploreElement.style.display = "block";
+
+        }, 1500);
+    }
+
+    function reRoll() {
+
+// Define our list of tokens
+const PROMPTS = ["DQ_Monster_AdSpace.png", "DQ_Monster_Art.png", "DQ_Monster_BadDogOwner.png", "DQ_Monster_Banker.png", "DQ_Monster_BEEPY.png", "DQ_Monster_BlobArmy.png", "DQ_Monster_Blurmn.png", "DQ_Monster_Bottle.png", "DQ_Monster_Bust.png", "DQ_Monster_CannibalSlime.png", "DQ_Monster_ClamTongue.png", "DQ_Monster_CrabCrab.png", "DQ_Monster_CuteSquid.png", "DQ_Monster_DarkWitch.png", "DQ_Monster_Duck.png", "DQ_Monster_Duster.png", "DQ_Monster_Eelee.png", "DQ_Monster_FunCentipede.png", "DQ_Monster_Gargoyle.png", "DQ_Monster_Glob.png", "DQ_Monster_GnomeChomsky.png", "DQ_Monster_GreenOwl.png", "DQ_Monster_HoodieWizard.png", "DQ_Monster_HorseFly.png", "DQ_Monster_InvertedSnake.png", "DQ_Monster_KillerBird.png", "DQ_Monster_KnifeFish.png", "DQ_Monster_Knight.png", "DQ_Monster_LOVEBUG.png", "DQ_Monster_MeanLeaf.png", "DQ_Monster_Mermaid.png", "DQ_Monster_MidLevel.png", "DQ_Monster_MonsterJohn.png", "DQ_Monster_MOUSE.png", "DQ_Monster_MurderMouth.png", "DQ_Monster_PeeShooter.png", "DQ_Monster_PoisonWereRat.png", "DQ_Monster_PokeyBird.png", "DQ_Monster_PurpleAnt.png", "DQ_Monster_RichSpider.png", "DQ_Monster_SadCandle.png", "DQ_Monster_Scrappy.png", "DQ_Monster_SeedWizard.png", "DQ_Monster_SexyBook.png", "DQ_Monster_Shapes.png", "DQ_Monster_SkinnyJeanSteve.png", "DQ_Monster_SnapShot.png", "DQ_Monster_Spaghetti.png", "DQ_Monster_Spliffy.png", "DQ_Monster_SunAndMoon.png", "DQ_Monster_Thing.png", "DQ_Monster_TripleZombies.png", "DQ_Monster_Weirdo.png", "DQ_NPC_3Raccoons.png", "DQ_NPC_BabyOnLeash.png", "DQ_NPC_Borvis.png", "DQ_NPC_BoyOnARock.png", "DQ_NPC_CarWithEyelashes.png", "DQ_NPC_Crulmn.png", "DQ_NPC_CrustyWhiteDog.png", "DQ_NPC_DogWithAVideoCamera.png", "DQ_NPC_ElephantRider.png", "DQ_NPC_GabbaJack.png", "DQ_NPC_Goku.png", "DQ_NPC_GuidanceCounselor.png", "DQ_NPC_LAN.png", "DQ_NPC_LilDevil.png", "DQ_NPC_Long-Legged-Dog.png", "DQ_NPC_LongBubbleGuy.png", "DQ_NPC_MagicFrog.png", "DQ_NPC_Mold_Man.png", "DQ_NPC_NightKnight.png", "DQ_NPC_Pico.png", "DQ_NPC_PrincessPumpkin.png", "DQ_NPC_SirRichardson.png", "DQ_NPC_SleepyPhil.png", "DQ_NPC_TallWizard.png", "DQ_NPC_TheGuy.png", "DQ_NPC_TurnipBully.png", "DQ_NPC_Ursula.png", "DQ_Weapon_BigBirdFoot.png", "DQ_Weapon_Bonecrusher.png", "DQ_Weapon_BownArrow.png", "DQ_Weapon_BrassKnuck.png", "DQ_Weapon_CrabClawGlove.png", "DQ_Weapon_Crossbow.png", "DQ_Weapon_Deadstock.png", "DQ_Weapon_DronewithSword.png", "DQ_Weapon_FamilyVacationPortrait.png", "DQ_Weapon_GabbaJacksInflatableHammer.png", "DQ_Weapon_GreatAxe.png", "DQ_Weapon_HeftyHoe.png", "DQ_Weapon_Knife.png", "DQ_Weapon_Mace.png", "DQ_Weapon_MagicWand.png", "DQ_Weapon_MoonShoes.png", "DQ_Weapon_Nunchuku.png", "DQ_Weapon_Piggy.png", "DQ_Weapon_Poison.png", "DQ_Weapon_RizzSticks.png", "DQ_Weapon_RobbieTheRobot.png", "DQ_Weapon_Scythes.png", "DQ_Weapon_Shuriken.png", "DQ_Weapon_Spear.png", "DQ_Weapon_SunHarp.png", "DQ_Weapon_Sword.png", "DQ_Weapon_TickleMeMorningStar.png", "DQ_Weapon_WhiteMonster.png"];
+const PROMPTNAMES = ["AD SPACE", "ART", "BAD DOG OWNER", "BANKER", "BEEPY", "BLOB ARMY", "BLURMN", "BOTTLE", "BUST", "CANNIBAL SLIME", "CLAM TONGUE", "CRAB CRAB", "CUTE SQUID", "DARK WITCH", "DUCK", "DUSTER", "EELEE", "FUN CENTIPEDE", "GARGOYLE", "GLOB", "GNOME CHOMSKY", "GREENOWL", "HOODIE WIZARD", "HORSE FLY", "INVERTED SNAKE", "KILLER BIRD", "KNIFE FISH", "KNIGHT", "LOVEBUG", "MEAN LEAF", "MERMAID", "MID-LEVEL BUREAUCRAT", "MONSTER JOHN", "MOUSE", "MURDER MOUTH", "PEE SHOOTER", "POISON WERE-RAT", "POKEY BIRD", "PURPLE ANT", "RICH SPIDER", "SAD CANDLE", "SCRAPPY", "SEED WIZARD", "SEXY BOOK", "SHAPES", "SKINNY JEAN STEVE", "SNAP SHOT", "BAD SPAGHETTI", "SPLIFFY", "SUN AND MOON", "THING", "TRIPLE ZOMBIES", "WEIRDO", "3 RACCOONS", "BABY ON LEASH", "BORVIS", "BOY ON A ROCK", "CAR WITH EYELASHES", "CRULMN", "CRUSTY WHITE DOG", "DOG WITH A VIDEO CAMERA", "ELEPHANT RIDER", "GABBA JACK", "GOKU", "GUIDANCE COUNSELOR", "LAN", "LIL DEVIL", "LONG-LEGGED DOG", "LONG BUBBLE GUY", "MAGIC FROG", "MOLD MAN", "NIGHT KNIGHT", "PICO", "PRINCESS PUMPKIN", "SIR RICHARDSON", "SLEEPY PHIL", "TALL WIZARD", "THE GUY", "TURNIP BULLY", "URSULA", "BIG BIRD FOOT", "BONECRUSHER", "BOWN ARROW", "BRASS KNUCK", "CRAB CLAW GLOVE", "CROSSBOW", "DEADSTOCK", "DRONE WITH SWORD", "FAMILY VACATION PORTRAIT", "GABBA JACK'S INFLATABLE HAMMER", "GREAT AXE", "HEFTY HOE", "KNIFE", "MACE", "MAGIC WAND", "MOON SHOES", "NUNCHUKU", "PIGGY", "POISON", "RIZZ STICKS", "ROBBIE THE ROBOT", "SCYTHES", "SHURIKEN", "SPEAR", "SUN HARP", "SWORD", "TICKLE-ME MORNING STAR", "WHITE MONSTER"];
+const ACTIONS = ["BATTLE", "SIDE QUEST", "ACQUIRE LOOT", "DEATH"];
+// Select a token at random
+const index = Math.floor(Math.random() * PROMPTS.length);
+const indexActions = Math.floor(Math.random() * ACTIONS.length);
+
+const randomPrompt = PROMPTS[index];
+const randomPromptName = PROMPTNAMES[index];
+const randomAction = ACTIONS[indexActions];
+
+const promptImageElement = document.getElementById("promptImage");
+promptImageElement.src = randomPrompt;
+
+// Play dice audio
+var DICE_ROLL = new Audio();
+DICE_ROLL.src = "DiceRoll.mp3";
+setTimeout(() => {
+  DICE_ROLL.play();
+}, 100);
+
+const secondListElement = document.getElementById("secondList");
+secondListElement.innerHTML = "•  •  •";
+
+const secondButtonElement = document.getElementById("secondButton");
+secondButtonElement.style.display = "none";
+
+const secondDiceElement = document.getElementById("secondDice");
+secondDiceElement.style.display = "block";
+
+const thirdListElement = document.getElementById("thirdList");
+thirdListElement.style.display = "none";
+
+const thirdButtonElement = document.getElementById("thirdButton");
+thirdButtonElement.style.display = "none";
+
+promptImageElement.style.display = "none";
+
+// Grab a reference to the links container element
+const linksContainerElement = document.getElementById("links");
+
+setTimeout(() => {
+secondDiceElement.style.display = "none";
+linksContainerElement.style.display = "block";
+promptImageElement.style.display = "block";
+secondListElement.innerHTML = randomPromptName;
+thirdListElement.innerHTML = `ACTION: ${randomAction}`;
+thirdListElement.style.display = "block";
+thirdButtonElement.style.display = "none";
+promptImageElement.style.display = "block";
+}, 1500);
+
+reRollElement.style.display = "none";
+
+}
+</script>
+
+<body>
+    <img id="doorStatic" src="DoorStatic.gif" onclick="enterSite()" onmouseover="" style="cursor: pointer;"/>
+    <img id="door" src="Door.gif"/>
+    <img id="logo" src="DebtQuest_Logo_Pixelated.png"/>
+    <div id="list">ROLL FOR A LOCATION</div>
+    <img id="dice" src="Dice.gif"/>
+    <br>
+    <button id="weapon-button" onclick="selectWeapon()" onmouseover="" style="cursor: pointer;">ROLL</button>
+    <a id="worldLink" href = "" target = "_blank">
+      <img id="world" src = ""/>
+    </a>
+    <div id="secondList">ROLL FOR SUGGESTED PROMPT</div>
+    <button id="secondButton" onclick="selectPrompt()" onmouseover="" style="cursor: pointer;">ROLL</button>
+    <img id="secondDice" src="Dice.gif"/>
+    <img id="promptImage" src = ""/>
+    <div id="thirdList">MONKEY</div>
+    <button id="thirdButton" onclick="reRoll()" onmouseover="" style="cursor: pointer;">REROLL</button>
+    <h2><a id="explore">EXPLORE THE LINKS BELOW TO DIVE INTO THE WORLD OF DEBT QUEST!</a></h2>
+    <div id="links" class="links-container">
+    <a href="https://hellavisiontelevision.com/DQ-Characters" class="button" style="text-decoration:none" target = "_blank">MAIN&nbsp;CHARACTERS</a>
+    <a href="https://hellavisiontelevision.com/DQ-bestiary" class="button" style="text-decoration:none" target = "_blank">BESTIARY</a>
+    <a href="https://hellavisiontelevision.com/DQ-Weapons" class="button" style="text-decoration:none" target = "_blank">WEAPONS&nbsp;CACHE</a>
+    <a href="https://hellavisiontelevision.com/DQ-NPCs" class="button" style="text-decoration:none" target = "_blank">NPC&nbsp;COMMONS</a>
+    <br/>
+    <a href="https://hellavisiontelevision.com/DQ-Worlds" class="button" style="text-decoration:none" target = "_blank">WORLD&nbsp;GALLERY</a>
+    <a href="" class="button" style="text-decoration:none" target = "_blank">AUDIO&nbsp;BANK</a>
+    <a href="https://docs.google.com/document/d/1rRBBB5HnVJ6HGgyHtmIaaJQDGlnZEdBAO5DyXGXuvd8/edit?usp=sharing" class="button" style="text-decoration:none" target = "_blank">READ&nbsp;THE&nbsp;SCRIPT</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSevzBgqM281VUn2G8KNnb0xdmwQPgks8wYTw8UYBrrzW37WWw/viewform" class="button" style="text-decoration:none" target = "_blank">SUBMIT&nbsp;AN&nbsp;ANIMATION</a>
+    <br/>
+    <a href="https://hellavisiontelevision.com/dq-home" class="button" style="text-decoration:none" target = "_blank">DEBT&nbsp;QUEST&nbsp;WIKI</a>
+    <a onclick="window.print()" onmouseover="" style="cursor: pointer;" class="button" style="text-decoration:none" target = "_blank">PRINT&nbsp;SCREEN</a>
+  </div>
+    <img id="muteButton" src="MuteButton.png" onclick="mute()" onmouseover="" style="cursor: pointer;"/>
+    <img id="unmuteButton" src="UnmuteButton.png" onclick="unmute()" onmouseover="" style="cursor: pointer;"/>
+    <audio id="music" src="Castle.mp3";>
+    <!-- <audio controls autoplay>
+        <source src="Castle.mp3">
+    </audio> -->
+</body>
+
+</html>
